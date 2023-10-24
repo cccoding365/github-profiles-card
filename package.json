@@ -1,5 +1,5 @@
 {
-  "name": "computer-network-guide",
+  "name": "github-profiles-card",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,9 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "element-plus": "^2.3.9",
-    "vue": "^3.3.4",
-    "vue-router": "4"
+    "vue": "^3.3.4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",

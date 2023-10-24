@@ -1,46 +1,30 @@
-<template>
-  <el-container>
-    <el-header>
-      <el-menu default-active="1" class="el-menu-demo" mode="horizontal" :ellipsis="false">
-        <el-text class="mx-1" size="large">Computer Network Guide</el-text>
-        <div class="flex-grow" />
-        <el-menu-item index="1">
-          <router-link to="/">首页</router-link>
-        </el-menu-item>
-        <el-sub-menu index="2">
-          <template #title>知识专项</template>
-          <router-link to="/about">
-            <el-menu-item index="2-1">
-              项目一
-            </el-menu-item>
-          </router-link>
-          <el-menu-item index="2-2">item two</el-menu-item>
-          <el-menu-item index="2-3">item three</el-menu-item>
-        </el-sub-menu>
-        <el-menu-item index="3">关于</el-menu-item>
-        <el-menu-item index="5">设置</el-menu-item>
-      </el-menu>
-
-    </el-header>
-    <el-main>
-      <router-view></router-view>
-    </el-main>
-  </el-container>
-</template>
-
 <script setup>
-import { ref } from 'vue'
-
-const handleSelect = (key, keyPath) => {
-  console.log(key, keyPath)
-}
-
-const value1 = ref(true)
-
+import HelloWorld from './components/HelloWorld.vue'
 </script>
 
+<template>
+  <div>
+    <a href="https://vitejs.dev" target="_blank">
+      <img src="/vite.svg" class="logo" alt="Vite logo" />
+    </a>
+    <a href="https://vuejs.org/" target="_blank">
+      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
+    </a>
+  </div>
+  <HelloWorld msg="Vite + Vue" />
+</template>
+
 <style scoped>
-.flex-grow {
-  flex-grow: 1;
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.vue:hover {
+  filter: drop-shadow(0 0 2em #42b883aa);
 }
 </style>
