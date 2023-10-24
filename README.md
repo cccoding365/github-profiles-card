@@ -2,3 +2,15 @@
 <p align="center">
 Generate your github profiles card
 </p>
+
+## Usage
+
+1. **Enter the github username then click `Search`.**
+
+2. **You will get a card of the github profile that you enter.**
+
+![](./images/intro.png)
+
+## Todo
+
+1. **Add a celebration animation.**
