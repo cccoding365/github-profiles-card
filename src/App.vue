@@ -31,6 +31,7 @@ const handleSearch = async () => {
 	</div>
 
 	<div v-if="isShowCard" class="card-container">
+		<div class="close" @click="isShowCard = false" >×</div>
 		<img class="avatar" :src="userProfiles.avatar_url" alt="" />
 		<div class="name">{{ userProfiles.name }}</div>
 		<div class="bio">{{ userProfiles.bio }}</div>
@@ -115,6 +116,20 @@ const handleSearch = async () => {
 	user-select: none;
 	background: linear-gradient(to top left, blue, red);
 	box-shadow: 3px 3px 10px 5px #111;
+	position: relative;
+
+	.close {
+		position: absolute;
+		top: 5px;
+		right: 5px;
+		width: 40px;
+		height: 40px;
+		font-size: 3em;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+	}
 
 	.avatar {
 		width: 100px;
