@@ -13,6 +13,6 @@ Generate your github profiles card
 
 ## Todo
 
-1. **Adaptive mobile terminal.**
+1. ✅ **Adaptive mobile terminal.**
 2. **Add a celebration animation.**
 3. **Add particle dynamic background.**
