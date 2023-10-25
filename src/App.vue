@@ -1,9 +1,10 @@
 <script setup>
-import { fetchProfilesData } from '@/services/user.js';
-import { formatDateTime, getDaysGap } from '@/utils';
-import { ref } from 'vue';
+import { fetchProfilesData } from "@/services/user.js";
+import { formatDateTime, getDaysGap } from "@/utils";
+import { APP_TITLE } from "@/config";
+import { ref } from "vue";
 
-let searchUser = ref('');
+let searchUser = ref("");
 
 let userProfiles = ref({});
 let isShowCard = ref(false);
@@ -11,65 +12,72 @@ let isShowCard = ref(false);
 const handleSearch = async () => {
 	userProfiles.value = await fetchProfilesData(searchUser.value);
 	isShowCard.value = true;
-	searchUser.value = '';
+	searchUser.value = "";
 };
-
 </script>
 
 <template>
-	<h1 class="title">Github profiles card</h1>
+	<h1 class="title">{{ APP_TITLE }}</h1>
 	<div class="search-container">
-		<input class="input" v-model="searchUser" @keyup.enter="handleSearch" placeholder="Github Username" />
-		<button class="button" type="button" @click="handleSearch">Search</button>
+		<input
+			class="input"
+			v-model="searchUser"
+			@keyup.enter="handleSearch"
+			placeholder="GitHub UserName"
+		/>
+		<button class="button" type="button" @click="handleSearch">
+			Search
+		</button>
 	</div>
 
 	<div v-if="isShowCard" class="card-container">
-		<img class="avatar" :src="userProfiles.avatar_url" alt="">
+		<img class="avatar" :src="userProfiles.avatar_url" alt="" />
 		<div class="name">{{ userProfiles.name }}</div>
 		<div class="bio">{{ userProfiles.bio }}</div>
 		<div class="followers-following">
-			<span>{{ userProfiles.followers }} </span> Followers&nbsp;
-			Following <span>{{ userProfiles.following }}</span>
+			<span>{{ userProfiles.followers }} </span> Followers&nbsp; Following
+			<span>{{ userProfiles.following }}</span>
 		</div>
 		<div class="gap-days">
 			{{ getDaysGap(userProfiles.created_at) }}
 		</div>
 		<div class="datetime">
 			<div class="created_at">
-				<div class="label">
-					Created
-				</div>
+				<div class="label">Created</div>
 				{{ formatDateTime(userProfiles.created_at) }}
 			</div>
 
-
-
 			<div class="updated_at">
-				<div class="label">
-					Updated
-				</div>
+				<div class="label">Updated</div>
 				{{ formatDateTime(userProfiles.updated_at) }}
 			</div>
 		</div>
+	</div>
+	<div v-if="isShowCard" class="description">Design by DoubledConG</div>
+	<div v-else class="description">
+		Generate your own data card based on your GitHub repository data.
 	</div>
 </template>
 
 <style lang="less" scoped>
 .title {
-	margin-bottom: 30px;
+	font-size: 24px;
+	margin-bottom: 1rem;
+	font-family: "Courier New", Courier, monospace;
 }
 
 .search-container {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-size: 48px;
-	min-width: 100%;
+	max-width: 100%;
 	margin-bottom: 30px;
+	font-size: 14px;
 
 	.input {
+		min-width: 70%;
 		text-align: center;
-		font-size: 32px;
+		font-size: 1em;
 		outline: none;
 		color: #333;
 		background-color: #ddd;
@@ -80,8 +88,9 @@ const handleSearch = async () => {
 	}
 
 	.button {
+		width: 30%;
 		color: #666;
-		font-size: 32px;
+		font-size: 1em;
 		padding: 10px 20px;
 		border: 3px solid #fff;
 		border-left: none;
@@ -95,7 +104,7 @@ const handleSearch = async () => {
 }
 
 .card-container {
-	min-width: 400px;
+	max-width: 100%;
 	padding: 50px 20px 10px;
 	border-radius: 10px;
 	border: 3px solid #eee;
@@ -119,13 +128,13 @@ const handleSearch = async () => {
 	.name {
 		font-size: 30px;
 		font-weight: bold;
-		font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+		font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 	}
 
 	.bio {
 		text-align: center;
 		margin-bottom: 10px;
-		max-width: 50vw;
+		min-width: 50vw;
 	}
 
 	.followers-following {
@@ -147,10 +156,10 @@ const handleSearch = async () => {
 		position: relative;
 		display: flex;
 		align-items: center;
-		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+		font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 
 		&::before {
-			content: 'Code';
+			content: "Code";
 			font-size: 20px;
 			position: absolute;
 			left: 0;
@@ -158,7 +167,7 @@ const handleSearch = async () => {
 		}
 
 		&::after {
-			content: 'days';
+			content: "days";
 			font-size: 20px;
 			position: absolute;
 			left: 100%;
@@ -173,7 +182,7 @@ const handleSearch = async () => {
 		width: 100%;
 		display: flex;
 		justify-content: space-between;
-		font-family: 'Times New Roman', Times, serif;
+		font-family: "Times New Roman", Times, serif;
 
 		.created_at {
 			text-align: left;
@@ -182,6 +191,62 @@ const handleSearch = async () => {
 		.updated_at {
 			text-align: right;
 		}
+	}
+}
+
+.description {
+	margin-top: 1rem;
+	color: #999;
+	font-weight: bold;
+	text-align: center;
+	font-family: "Courier New", Courier, monospace;
+}
+
+@media screen and (min-width: 320px) {
+	.title {
+		font-size: 28px;
+	}
+	.search-container {
+		font-size: 20px;
+	}
+}
+
+@media screen and (min-width: 375px) {
+	.search-container {
+		font-size: 24px;
+	}
+}
+
+@media screen and (min-width: 425px) {
+	.title {
+		font-size: 40px;
+	}
+	.search-container {
+		font-size: 30px;
+	}
+	.description {
+		font-size: 22px;
+	}
+}
+
+@media screen and (min-width: 768px) {
+}
+
+@media screen and (min-width: 1024px) {
+}
+
+@media screen and (min-width: 1440px) {
+}
+
+@media screen and (min-width: 2560px) {
+	.title {
+		font-size: 72px;
+	}
+	.search-container {
+		font-size: 72px;
+	}
+	.description {
+		font-size: 36px;
 	}
 }
 </style>
