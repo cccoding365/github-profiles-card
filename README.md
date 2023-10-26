@@ -7,9 +7,11 @@ Generate your github profiles card
 
 1. **Enter the github username then click `Search`.**
 
+![](./images/intro0.png)
+
 2. **You will get a card of the github profile that you enter.**
 
-![](./images/intro.png)
+![](./images/intro1.png)
 
 ## Todo
 
