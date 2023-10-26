@@ -37,7 +37,7 @@ const handleSearch = async () => {
 </script>
 
 <template>
-	<img v-if="!isShowCard" class="logo" src="../public/logo.png" alt="Github card" />
+	<img v-if="!isShowCard" class="logo" src="/logo.png" alt="Github card" />
 	<h1 class="title">{{ APP_TITLE }}</h1>
 	<div v-if="!isShowCard" class="search-container">
 		<input
