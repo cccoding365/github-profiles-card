@@ -12,9 +12,3 @@ Generate your github profiles card
 2. **You will get a card of the github profile that you enter.**
 
 ![](./images/intro1.png)
-
-## Todo
-
-1. ✅ **Adaptive mobile terminal.**
-2. **Add a celebration animation.**
-3. ✅ **Add particle dynamic background.**

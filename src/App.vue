@@ -37,7 +37,7 @@ const handleSearch = async () => {
 </script>
 
 <template>
-	<img v-if="!isShowCard" class="logo" src="./assets/logo.png" alt="Github card" />
+	<img v-if="!isShowCard" class="logo" src="../public/logo.png" alt="Github card" />
 	<h1 class="title">{{ APP_TITLE }}</h1>
 	<div v-if="!isShowCard" class="search-container">
 		<input
@@ -145,7 +145,7 @@ const handleSearch = async () => {
 	line-height: 2;
 	user-select: none;
 	background: linear-gradient(to top left, blue, red);
-	box-shadow: 3px 3px 10px 5px #111;
+	box-shadow: 3px 3px 10px 5px #aaa;
 	position: relative;
 
 	.close {
