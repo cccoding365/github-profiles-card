@@ -37,6 +37,7 @@ const handleSearch = async () => {
 </script>
 
 <template>
+	<img v-if="!isShowCard" class="logo" src="./assets/logo.png" alt="Github card" />
 	<h1 class="title">{{ APP_TITLE }}</h1>
 	<div v-if="!isShowCard" class="search-container">
 		<input
@@ -81,6 +82,11 @@ const handleSearch = async () => {
 </template>
 
 <style lang="less" scoped>
+.logo {
+	width: 150px;
+	height: 150px;
+}
+
 .title {
 	font-size: 24px;
 	margin-bottom: 1rem;

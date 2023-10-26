@@ -3,29 +3,19 @@
 
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>%VITE_APP_TITLE%</title>
   </head>
 
-  <style>
-    #particles-js {
-      position: fixed;
-      z-index: 0;
-      width: 100%;
-    }
-  </style>
-
   <body>
-    <div id="particles-js"></div>
+    <div id="particles-js" style="position: fixed;width: 100%;"></div>
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
     <script src="./node_modules/particles.js"></script>
     <script>
       /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
-      particlesJS.load('particles-js', './src/assets/particles.json', function () {
-        console.log('callback - particles.js config loaded');
-      });
+      particlesJS.load('particles-js', './src/assets/particles.json');
     </script>
 
   </body>
