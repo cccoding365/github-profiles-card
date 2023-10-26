@@ -11,28 +11,28 @@ let searchUser = ref("");
 let userProfiles = ref({});
 let isShowCard = ref(false);
 
-const handleSearch = async () => {
-	if (!searchUser.value) {
-		Swal.fire({
-			icon: "question",
-			title: "You didn't enter anything. Continue?",
-			showCancelButton: true,
-			confirmButtonText: "Continue",
-			denyButtonText: `Cancel`,
-		}).then(async result => {
-			/* Read more about isConfirmed, isDenied below */
-			if (result.isConfirmed) {
-				Swal.fire("Tips", "This is a default result.", "success");
-				userProfiles.value = await fetchProfilesData(searchUser.value);
-				isShowCard.value = true;
-				searchUser.value = "";
-			}
-		});
-		return;
-	}
+const handleFetch = async () => {
 	userProfiles.value = await fetchProfilesData(searchUser.value);
 	isShowCard.value = true;
 	searchUser.value = "";
+};
+
+const handleSearch = async () => {
+	if (searchUser.value) {
+		return handleFetch();
+	}
+	Swal.fire({
+		icon: "question",
+		title: "You didn't enter anything. Continue?",
+		showCancelButton: true,
+		confirmButtonText: "Continue",
+		denyButtonText: `Cancel`,
+	}).then(async result => {
+		if (result.isConfirmed) {
+			Swal.fire("Tips", "This is a default result.", "success");
+			handleFetch();
+		}
+	});
 };
 </script>
 
@@ -103,7 +103,7 @@ const handleSearch = async () => {
 		color: #666;
 		background-color: #ddd;
 		padding: 10px 20px;
-		border: 3px solid rgba(112, 102, 224, .7);
+		border: 3px solid rgba(112, 102, 224, 0.7);
 		border-radius: 10px 0 0 10px;
 		border-right: none;
 	}
@@ -114,10 +114,16 @@ const handleSearch = async () => {
 		background-color: #7066e0;
 		font-size: 1em;
 		padding: 10px 20px;
-		border: 3px solid rgba(112, 102, 224, .7);
+		border: 3px solid rgba(112, 102, 224, 0.7);
 		border-left: none;
 		border-radius: 0 10px 10px 0;
 		cursor: pointer;
+		&:hover {
+			background-image: linear-gradient(
+				rgba(0, 0, 0, 0.1),
+				rgba(0, 0, 0, 0.1)
+			);
+		}
 	}
 }
 
