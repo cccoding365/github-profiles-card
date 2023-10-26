@@ -8,9 +8,26 @@
     <title>%VITE_APP_TITLE%</title>
   </head>
 
+  <style>
+    #particles-js {
+      position: fixed;
+      z-index: 0;
+      width: 100%;
+    }
+  </style>
+
   <body>
+    <div id="particles-js"></div>
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
+    <script src="./node_modules/particles.js"></script>
+    <script>
+      /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
+      particlesJS.load('particles-js', './src/assets/particles.json', function () {
+        console.log('callback - particles.js config loaded');
+      });
+    </script>
+
   </body>
 
 </html>

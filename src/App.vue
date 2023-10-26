@@ -94,6 +94,7 @@ const handleSearch = async () => {
 	max-width: 100%;
 	margin-bottom: 30px;
 	font-size: 14px;
+	z-index: 999;
 
 	.input {
 		min-width: 70%;
