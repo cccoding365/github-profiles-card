@@ -1,4 +1,6 @@
 <script setup>
+import Swal from "sweetalert2/dist/sweetalert2.js";
+
 import { fetchProfilesData } from "@/services/user.js";
 import { formatDateTime, getDaysGap } from "@/utils";
 import { APP_TITLE } from "@/config";
@@ -10,6 +12,24 @@ let userProfiles = ref({});
 let isShowCard = ref(false);
 
 const handleSearch = async () => {
+	if (!searchUser.value) {
+		Swal.fire({
+			icon: "question",
+			title: "You didn't enter anything. Continue?",
+			showCancelButton: true,
+			confirmButtonText: "Continue",
+			denyButtonText: `Cancel`,
+		}).then(async result => {
+			/* Read more about isConfirmed, isDenied below */
+			if (result.isConfirmed) {
+				Swal.fire("Tips", "This is a default result.", "success");
+				userProfiles.value = await fetchProfilesData(searchUser.value);
+				isShowCard.value = true;
+				searchUser.value = "";
+			}
+		});
+		return;
+	}
 	userProfiles.value = await fetchProfilesData(searchUser.value);
 	isShowCard.value = true;
 	searchUser.value = "";
@@ -18,7 +38,7 @@ const handleSearch = async () => {
 
 <template>
 	<h1 class="title">{{ APP_TITLE }}</h1>
-	<div class="search-container">
+	<div v-if="!isShowCard" class="search-container">
 		<input
 			class="input"
 			v-model="searchUser"
@@ -31,7 +51,7 @@ const handleSearch = async () => {
 	</div>
 
 	<div v-if="isShowCard" class="card-container">
-		<div class="close" @click="isShowCard = false" >×</div>
+		<div class="close" @click="isShowCard = false">×</div>
 		<img class="avatar" :src="userProfiles.avatar_url" alt="" />
 		<div class="name">{{ userProfiles.name }}</div>
 		<div class="bio">{{ userProfiles.bio }}</div>
@@ -80,27 +100,24 @@ const handleSearch = async () => {
 		text-align: center;
 		font-size: 1em;
 		outline: none;
-		color: #333;
+		color: #666;
 		background-color: #ddd;
 		padding: 10px 20px;
-		border: 3px solid #fff;
+		border: 3px solid rgba(112, 102, 224, .7);
 		border-radius: 10px 0 0 10px;
 		border-right: none;
 	}
 
 	.button {
 		width: 30%;
-		color: #666;
+		color: #eee;
+		background-color: #7066e0;
 		font-size: 1em;
 		padding: 10px 20px;
-		border: 3px solid #fff;
+		border: 3px solid rgba(112, 102, 224, .7);
 		border-left: none;
 		border-radius: 0 10px 10px 0;
 		cursor: pointer;
-
-		&:hover {
-			color: #333;
-		}
 	}
 }
 

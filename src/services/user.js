@@ -35,6 +35,12 @@ const defaultData = {
 
 export const fetchProfilesData = async user => {
     return new Promise((resolve, reject) => {
+
+        if (!user) {
+            resolve(defaultData);
+            return;
+        }
+
         fetch(`https://api.github.com/users/${user}`).then(async res => {
             if (res.status === 200) {
                 const data = await res.json();
