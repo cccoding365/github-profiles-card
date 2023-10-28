@@ -90,7 +90,8 @@ const handleSearch = async () => {
 .title {
 	font-size: 24px;
 	margin-bottom: 1rem;
-	font-family: "Courier New", Courier, monospace;
+	text-shadow: 5px 5px #702c85;
+	-webkit-text-stroke: 1px #7066e0;
 }
 
 .search-container {
